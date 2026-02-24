@@ -1,0 +1,13 @@
+{
+  "name": "express",
+  "module": "server.js",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "express-handlebars": "^8.0.4",
+    "express-sse": "^1.0.0",
+    "handlebars": "^4.7.8"
+  }
+}

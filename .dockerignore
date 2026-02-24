@@ -1,0 +1,8 @@
+.DS_Store
+.dockerignore
+.git
+.gitignore
+.forgejo
+node_modules
+Dockerfile
+README.md
