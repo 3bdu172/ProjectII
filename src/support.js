@@ -1,4 +1,10 @@
-export default function setup(app, port) {
+export default function setup(app) {
+  const port = 8080;
+  const host = "0.0.0.0";
+
+  // init
+  process.env.NODE_ENV ||= "development";
+
   // route: always answers with 200 OK if healthy
   app.get("/health", (_req, res) => {
     res.status(200).type("text/plain").send("The server is up and running.");
@@ -8,9 +14,9 @@ export default function setup(app, port) {
   app.set("trust proxy", true);
 
   // starts the listener
-  app.listen(port, () => {
-    console.log(`Point your browser to: http://localhost:${port}`);
-  });
+  app.listen(port, host);
+  console.log(`Environment: ${process.env.NODE_ENV}`);
+  console.log(`Point your browser to: http://localhost:${port}`);
 
   // allows ^C to stop the server and handle the exit
   process.on("SIGINT", function () {

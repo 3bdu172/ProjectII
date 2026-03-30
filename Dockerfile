@@ -18,4 +18,5 @@ RUN bun install --production --frozen-lockfile
 EXPOSE 8080
 
 # Run the server
+ENV NODE_ENV=production
 CMD ["bun", "src/server.js"]
