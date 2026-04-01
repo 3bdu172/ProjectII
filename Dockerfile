@@ -18,7 +18,7 @@ RUN bun install --production --frozen-lockfile
 EXPOSE 8080
 
 # Extract the commit info
-#   ARG GIT_COMMIT_SHA
+ARG GIT_COMMIT_SHA
 ARG GIT_COMMIT_DATE
 ARG GIT_COMMIT_MESSAGE
 ENV GIT_COMMIT_SHA=$GIT_COMMIT_SHA
