@@ -17,6 +17,14 @@ RUN bun install --production --frozen-lockfile
 # Expose port 8080
 EXPOSE 8080
 
+# Extract the commit info
+#   ARG GIT_COMMIT_SHA
+ARG GIT_COMMIT_DATE
+ARG GIT_COMMIT_MESSAGE
+ENV GIT_COMMIT_SHA=$GIT_COMMIT_SHA
+ENV GIT_COMMIT_DATE=$GIT_COMMIT_DATE
+ENV GIT_COMMIT_MESSAGE=$GIT_COMMIT_MESSAGE
+
 # Run the server
 ENV NODE_ENV=production
 CMD ["bun", "src/server.js"]

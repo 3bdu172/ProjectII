@@ -16,7 +16,11 @@ docker-build:
   # All branches are tagged with $DOCKER_IMAGE_NAME (defaults to commit ref slug)
   # Default branch is also tagged with `latest`
   script:
-    - docker build --pull -t "$DOCKER_IMAGE_NAME" .
+    - docker build --pull
+        --build-arg GIT_COMMIT_SHA="$CI_COMMIT_SHORT_SHA"
+        --build-arg GIT_COMMIT_DATE="$CI_COMMIT_TIMESTAMP"
+        --build-arg GIT_COMMIT_MESSAGE="$CI_COMMIT_MESSAGE"
+        -t "$DOCKER_IMAGE_NAME" .
     - docker push "$DOCKER_IMAGE_NAME"
     - |
       if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" ]]; then

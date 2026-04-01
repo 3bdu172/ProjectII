@@ -10,6 +10,15 @@ export default function setup(app) {
     res.status(200).type("text/plain").send("The server is up and running.");
   });
 
+  // route: provide commit info
+  app.get("/commit", (_req, res) => {
+    res.status(200).type("text/plain").send(`
+GIT_COMMIT_SHA    : ${process.env.GIT_COMMIT_SHA}
+GIT_COMMIT_DATE   : ${process.env.GIT_COMMIT_DATE}
+GIT_COMMIT_MESSAGE: ${process.env.GIT_COMMIT_MESSAGE}
+      `);
+  });
+
   // we may (and will) be running behind a reverse proxy
   app.set("trust proxy", true);
 
