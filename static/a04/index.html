@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aufgabe 4 - Wohnheim Portal</title>
+    
+</head>
+
+<body>
+
+    <header>
+        <section>
+            <h1>Wohnheim Portal</h1>
+            <p>Dokumentation der Template-Lösung</p>
+        </section>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>1. Kurze Beschreibung der implementierten Templates und Routen</h2>
+
+            <p>
+                Das Wohnheim Portal wurde mit Express und Handlebars umgesetzt.
+                Die einzelnen Screens aus Aufgabe 3 wurden als Handlebars-Templates erstellt.
+                Für jede Seite gibt es eine eigene Express-Route.
+            </p>
+
+            <ul>
+                <li><strong><a href="/startseite">Startseite:</a></strong> Einstieg in die Anwendung mit Links zu Login und Registrierung.</li>
+                <li><strong><a href="/login">Login:</a></strong> Seite für die Anmeldung eines Benutzers.</li>
+                <li><strong><a href="/registrieren">Registrierung:</a></strong> Seite zum Erstellen eines neuen Benutzerkontos.</li>
+                <li><strong><a href="/dashboard">Dashboard:</a></strong> Übersicht über die wichtigsten Funktionen des Wohnheim Portals.</li>
+                <li><strong><a href="/waschmaschinen">Waschmaschinen:</a></strong> Anzeige von freien und belegten Waschmaschinen.</li>
+                <li><strong><a href="/musikraum">Musikraum:</a></strong> Seite zur Reservierung des Musikraums.</li>
+                <li><strong><a href="/partyraum">Partyraum:</a></strong> Seite zur Reservierung des Partyraums.</li>
+                <li><strong><a href="/chat">Chat:</a></strong> Wohnheim-Chat für die Kommunikation zwischen Bewohnern.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Erläuterung zu Layout, Partials und Mustache-Konstrukten</h2>
+
+            <p>
+                Das gemeinsame Layout befindet sich in der Datei
+                <strong>views/layouts/main.handlebars</strong>. Dort stehen die allgemeine
+                HTML-Grundstruktur, die CSS-Verlinkung, der Header und die Navigation.
+                Der individuelle Inhalt jeder Seite wird über <strong>{{{body}}}</strong> eingefügt.
+            </p>
+
+            <p>
+                Wiederkehrende HTML-Strukturen wurden als Partials ausgelagert.
+                Der Header wurde in <strong>views/partials/header.handlebars</strong> verschoben.
+                Außerdem wurde für die Waschmaschinen eine eigene wiederverwendbare Karte
+                als Partial erstellt.
+            </p>
+
+            <p>
+                In den Templates wird Mustache-Syntax verwendet. Einfache Werte werden mit
+                <strong>{{title}}</strong>, <strong>{{name}}</strong> oder <strong>{{status}}</strong>
+                ausgegeben. Listen werden mit <strong>{{#each ...}}</strong> durchlaufen.
+            </p>
+        </section>
+
+        <section>
+            <h2>4. Beschreibung der verwendeten Testdaten</h2>
+
+            <p>
+                Die Testdaten für die Waschmaschinen wurden in JavaScript-Objekte ausgelagert
+                und über den Controller an das Template übergeben.
+            </p>
+
+            <ul>
+                <li>Anne: belegt, 0:35 h</li>
+                <li>Fredy: belegt, 0:02 h</li>
+                <li>Marta: belegt, 0:13 h</li>
+                <li>Jakub: frei</li>
+                <li>Max: frei</li>
+                <li>Zoja: belegt, 0:38 h</li>
+            </ul>
+
+            <p>
+                Diese Daten werden im Template <strong>waschmaschinen.handlebars</strong>
+                mit einer <strong>{{#each machines}}</strong>-Schleife angezeigt.
+            </p>
+        </section>
+
+    </main>
+    <footer>
+        <p>
+            <a href="/index.html">Zurück zur Startseite</a>
+        </p>
+        <p>Erstellt von: Abdulrahman Al-Mashrea</p>
+    </footer>
+
+</body>
+</html>

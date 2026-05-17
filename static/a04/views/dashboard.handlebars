@@ -1,0 +1,17 @@
+<main>
+
+    {{#each sections}}
+
+        <section class="dashboard-section">
+            <h2>{{title}}</h2>
+
+            <p>
+                {{textBefore}}
+                <a href="{{url}}">{{linkText}}</a>
+                {{textAfter}}
+            </p>
+        </section>
+
+    {{/each}}
+
+</main>
