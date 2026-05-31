@@ -4,15 +4,15 @@
 
         <p>Bitte melden Sie sich mit Ihrem Konto an.</p>
 
-        <br>
-        <label for="email">E-Mail-Adresse:</label>
-        <input type="email" id="email" placeholder="name@example.com">
-        <br>
-        <label for="password">Passwort:</label>
-        <input type="password" id="password" placeholder="Passwort eingeben">
-        <br>
-        <a class="button" href="/dashboard">login</a>
+        <form class="form" action="/dashboard" method="get">
+            <label for="email">E-Mail-Adresse:</label>
+            <input type="email" id="email" placeholder="name@example.com">
 
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" placeholder="Passwort eingeben">
+            
+            <button class ="button" type="submit">Login</button>
+        </form>
 
         <p>
             Haben Sie noch kein Konto?<br><br>

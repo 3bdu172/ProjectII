@@ -1,106 +1,89 @@
-const dashboardSections = [
+import { getAllMachines } from "../models/machine.js";
+import { getRoomsByType } from "../models/room.js";
+import { getReservationsByRoom } from "../models/reservation.js";
+import { getAllMessages } from "../models/chat.js";
+
+
+export const dashboardSections = [
     {
         title: "Waschmaschinen",
-        textBefore: "Hier sieht man den Status der",
-        linkText: "Waschmaschinen",
+        description: "Hier sieht man den Status der Waschmaschinen.",
         url: "/waschmaschinen",
-        textAfter: "."
+        buttonText: "Anzeigen"
     },
     {
         title: "Musikraum",
-        textBefore: "Hier kann man den",
-        linkText: "Musikraum",
+        description: "Hier kann man den Musikraum reservieren.",
         url: "/musikraum",
-        textAfter: "reservieren."
+        buttonText: "Reservieren"
     },
     {
         title: "Partyraum",
-        textBefore: "Hier kann man den",
-        linkText: "Partyraum",
+        description: "Hier kann man den Partyraum reservieren.",
         url: "/partyraum",
-        textAfter: "reservieren."
+        buttonText: "Reservieren"
     }
 ];
 
-const machines = [
-    {
-        name: "Anne",
-        status: "BELEGT 0:35 h",
-        statusClass: "occupied"
-    },
-    {
-        name: "Fredy",
-        status: "BELEGT 0:02 h",
-        statusClass: "occupied"
-    },
-    {
-        name: "Marta",
-        status: "BELEGT 0:13 h",
-        statusClass: "occupied"
-    },
-    {
-        name: "Jakub",
-        status: "FREI",
-        statusClass: "free"
-    },
-    {
-        name: "Max",
-        status: "FREI",
-        statusClass: "free"
-    },
-    {
-        name: "Zoja",
-        status: "BELEGT 0:38 h",
-        statusClass: "occupied"
-    }
-];
 
 export function showStart(req, res) {
     res.render("startseite", {
-        layout: "main",
-        title: "Startseite",
         showNav: false
     });
 }
 
 export function showDashboard(req, res) {
     res.render("dashboard", {
-        layout: "main",
-        title: "Dashboard",
-        sections: dashboardSections,
+        dashboardSections: dashboardSections,
         showNav: true
     });
 }
 
-export function showWaschmaschinen(req, res) {
+export async function showWaschmaschinen(req, res) {
+    const machines = await getAllMachines();
+
     res.render("waschmaschinen", {
-        layout: "main",
         title: "Waschmaschinen",
-        machines: machines,
-        showNav: true
+        showNav: true,
+        pageNav: true,
+        machines
     });
 }
 
-export function showMusikraum(req, res) {
+export async function showMusikraum(req, res) {
+    const rooms = await getRoomsByType("music");
+    const musikraum = rooms[0];
+
+    const reservations = await getReservationsByRoom(musikraum.room_id);
+
     res.render("musikraum", {
-        layout: "main",
         title: "Musikraum",
-        showNav: true
+        showNav: true,
+        room: musikraum,
+        reservations
     });
 }
 
-export function showPartyraum(req, res) {
+export async function showPartyraum(req, res) {
+    const rooms = await getRoomsByType("party");
+    const partyraum = rooms[0];
+
+    const reservations = await getReservationsByRoom(partyraum.room_id);
+
     res.render("partyraum", {
-        layout: "main",
         title: "Partyraum",
-        showNav: true
+        showNav: true,
+        room: partyraum,
+        reservations
     });
 }
 
-export function showChat(req, res) {
+export async function showChat(req, res) {
+    const messages = await getAllMessages();
+
     res.render("chat", {
-        layout: "main",
         title: "Wohnheim Chat",
-        showNav: true
+        showNav: true,
+        messages
     });
 }

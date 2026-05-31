@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aufgabe 5 - Datenbankintegration</title>
+    
+</head>
+
+<body>
+
+    <header>
+        <section>
+            <h1>Wohnheim Portal</h1>
+            <p>Dokumentation der Datenbankintegration</p>
+        </section>
+
+        <nav>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/waschmaschinen">Waschmaschinen</a>
+            <a href="/musikraum">Musikraum</a>
+            <a href="/partyraum">Partyraum</a>
+            <a href="/chat">Chat</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>1. Kurze Beschreibung des implementierten Datenmodells</h2>
+
+            <p>
+                Das Datenmodell des Wohnheim Portals besteht aus mehreren zentralen Entitäten.
+                Die Anwendung verwaltet Benutzer, Räume, Reservierungen, Chat-Nachrichten und Waschmaschinen.
+            </p>
+
+            <ul>
+                <li><strong>Benutzer:</strong> speichert die Bewohner des Wohnheims.</li>
+                <li><strong>Raum:</strong> speichert gemeinsame Räume wie Musikraum und Partyraum.</li>
+                <li><strong>Reservierung:</strong> speichert Buchungen für Räume.</li>
+                <li><strong>Chat:</strong> speichert Nachrichten aus dem Wohnheim-Chat.</li>
+                <li><strong>Waschmaschine:</strong> speichert den Status der Waschmaschinen.</li>
+            </ul>
+
+            <p>
+                Die Waschmaschinen haben keine direkte Beziehung zu den Benutzern, da die Benutzer
+                nur den Status der Waschmaschinen sehen können.
+            </p>
+        </section>
+
+
+        <section>
+            <h2>2. ER-Diagramm</h2>
+
+            <p>
+                Das folgende ER-Diagramm zeigt die wichtigsten Entitäten und Beziehungen der Anwendung.
+            </p>
+
+            <img src="er-diagram.png" alt="ER-Diagramm des Wohnheim Portals" style="max-width: 600px;">
+        </section>
+
+
+        <section>
+            <h2>3. Verlinkung zu den implementierten Routen mit Datenbankanbindung</h2>
+
+            <ul>
+                <li><a href="/dashboard">Dashboard öffnen</a></li>
+                <li><a href="/waschmaschinen">Waschmaschinen öffnen</a></li>
+                <li><a href="/musikraum">Musikraum öffnen</a></li>
+                <li><a href="/partyraum">Partyraum öffnen</a></li>
+                <li><a href="/chat">Wohnheim-Chat öffnen</a></li>
+            </ul>
+
+            <p>
+                Diese Routen laden ihre Daten über Controller und Model-Module aus der Datenbank.
+            </p>
+        </section>
+
+
+        <section>
+            <h2>4. Wichtige SQL-Abfragen und Datenbank-Funktionen</h2>
+
+            <p>
+                Die Datenbank wird in der Datei <strong>src/models/db.js</strong> geöffnet.
+                Dort werden außerdem die SQL-Dateien <strong>data/create.sql</strong> und
+                <strong>data/populate.sql</strong> ausgeführt.
+            </p>
+
+            <h3>Waschmaschinen laden</h3>
+
+            <p>
+                Die Waschmaschinen werden aus der Tabelle <strong>waschmaschine</strong> gelesen.
+            </p>
+
+            <pre><code>SELECT *
+FROM waschmaschine;</code></pre>
+
+            <h3>Räume laden</h3>
+
+            <p>
+                Musikraum und Partyraum werden beide in der Tabelle <strong>raum</strong> gespeichert.
+                Über die Spalte <strong>typ</strong> wird unterschieden, ob es sich um den Musikraum
+                oder den Partyraum handelt.
+            </p>
+
+            <pre><code>SELECT *
+FROM raum
+WHERE typ = ?;</code></pre>
+
+            <h3>Reservierungen laden</h3>
+
+            <p>
+                Reservierungen werden über die Tabelle <strong>reservierung</strong> geladen.
+                Die Fremdschlüssel <strong>user_id</strong> und <strong>room_id</strong> verbinden
+                Reservierungen mit Benutzer und Raum.
+            </p>
+
+            <pre><code>SELECT *
+FROM reservierung
+WHERE room_id = ?;</code></pre>
+
+            <h3>Chat-Nachrichten laden</h3>
+
+            <p>
+                Für den Chat werden Nachrichten gemeinsam mit dem Namen des Benutzers geladen.
+            </p>
+
+            <pre><code>SELECT 
+    chat.message_id,
+    chat.text,
+    chat.created_at,
+    benutzer.name AS author
+FROM chat
+JOIN benutzer ON chat.user_id = benutzer.user_id
+ORDER BY chat.created_at ASC;</code></pre>
+        </section>
+
+
+        <section>
+            <h2>5. Beschreibung der Testdaten</h2>
+
+            <p>
+                Die Testdaten befinden sich in der Datei <strong>data/populate.sql</strong>.
+                Dort werden Beispielbenutzer, Räume, Waschmaschinen, Reservierungen und Chat-Nachrichten eingefügt.
+            </p>
+
+            <ul>
+                <li>Mehrere Benutzer, zum Beispiel Anne, Max, Sara und Jakub.</li>
+                <li>Zwei Räume: Musikraum und Partyraum.</li>
+                <li>Mehrere Waschmaschinen mit Status frei oder belegt.</li>
+                <li>Reservierungen für Musikraum und Partyraum.</li>
+                <li>Beispielnachrichten für den Wohnheim-Chat.</li>
+            </ul>
+
+            <p>
+                Die Testdaten werden beim Start der Anwendung über <strong>db.js</strong> initialisiert.
+                Dadurch stehen die Daten direkt beim Testen der Routen zur Verfügung.
+            </p>
+        </section>
+
+    </main>
+    <footer>
+        <p>
+            <a href="/index.html">Zurück zur Startseite</a>
+        </p>
+        <p>Erstellt von: Abdulrahman Al-Mashrea</p>
+    </footer>
+</body>
+</html>

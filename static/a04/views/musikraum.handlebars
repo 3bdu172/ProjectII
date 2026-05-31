@@ -1,3 +1,39 @@
-<main class="dashboard-content">
+<main class="page">
+
+    <section class="card">
+        <h2>Musikraum reservieren</h2>
+
+        <p>
+            Hier können Bewohner den Musikraum für eine bestimmte Zeit reservieren.
+        </p>
+
+        <form class="form">
+
+            <label for="musik-datum">Datum:</label>
+            <input type="date" id="musik-datum" name="datum">
+
+            <label for="musik-start">Startzeit:</label>
+            <input type="time" id="musik-start" name="startzeit">
+
+            <label for="musik-ende">Endzeit:</label>
+            <input type="time" id="musik-ende" name="endzeit">
+
+            <label for="musik-name">Name:</label>
+            <input type="text" id="musik-name" name="name" placeholder="Ihr Name">
+
+            <label for="zimmernummer">Zimmernummer:</label>
+            <input type="text" id="zimmernummer" name="zimmernummer" placeholder="Ihr Zimmernummer">
+
+            <button class="button" type="submit">Reservieren</button>
+
+        </form>
+
+        <section class="info-box">
+            <h3>Aktuelle Reservierungen</h3>
+
+            <p><strong>Montag:</strong> 16:00 - 18:00 Uhr, reserviert von Anne</p>
+            <p><strong>Dienstag:</strong> 18:00 - 20:00 Uhr, reserviert von Max</p>
+        </section>
+    </section>
 
 </main>

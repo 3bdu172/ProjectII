@@ -1,3 +1,39 @@
-<main class="dashboard-content">
+<main class="page">
+
+    <section class="card">
+        <h2>Partyraum reservieren</h2>
+
+        <p>
+            Hier können Bewohner den Partyraum für Feiern oder Treffen reservieren.
+        </p>
+
+        <form class="form" action="/dashboard" method="get">
+
+            <label for="party-datum">Datum:</label>
+            <input type="date" id="party-datum" name="datum">
+
+            <label for="party-start">Startzeit:</label>
+            <input type="time" id="party-start" name="startzeit">
+
+            <label for="party-ende">Endzeit:</label>
+            <input type="time" id="party-ende" name="endzeit">
+
+            <label for="party-name">Name:</label>
+            <input type="text" id="party-name" name="name" placeholder="Ihr Name">
+
+            <label for="zimmernummer">Zimmernummer:</label>
+            <input type="text" id="zimmernummer" name="zimmernummer" placeholder="Ihr Zimmernummer">
+
+            <button class ="button" type="submit">Reservieren</button>
+
+        </form>
+
+        <section class="info-box">
+            <h3>Aktuelle Reservierungen</h3>
+
+            <p><strong>Freitag:</strong> 19:00 - 23:00 Uhr, reserviert</p>
+            <p><strong>Samstag:</strong> 18:00 - 22:00 Uhr, reserviert</p>
+        </section>
+    </section>
 
 </main>

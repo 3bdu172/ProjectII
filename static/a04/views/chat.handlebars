@@ -1,22 +1,30 @@
-<main>
-
-    <section class="chat-card">
+<main class="chat-page">
+    <div class="chat-container">
         <h2>Wohnheim Chat</h2>
 
-        <p>
-            Hier können Bewohner miteinander schreiben, Fragen stellen und wichtige Informationen teilen.
-        </p>
+        <div class="chat-messages">
+            <div class="message others-chat">
+                <div class="message-sender">Max</div>
+                <div class="message-text">When is the HM coming back?</div>
+                <div class="message-timestamp">10:35</div>
+            </div>
 
-        <section class="chat-messages">
+            <div class="message my-chat">
+                <div class="message-sender">You</div>
+                <div class="message-text">Next Monday</div>
+                <div class="message-timestamp">11:05</div>
+            </div>
+        </div>
 
-            
-        </section>
+        <form class="chat-input-form">
+            <input 
+                type="text" 
+                name="chat-input" 
+                class="chat-input" 
+                placeholder="Nachricht schreiben..."
+            >
 
-        <form class="chat-form" action="/chat" method="get">
-            <input type="text" name="message" placeholder="Nachricht schreiben...">
-            <button type="submit">Senden</button>
+            <button type="submit" class="send-button">Senden</button>
         </form>
-
-    </section>
-
+    </div>
 </main>

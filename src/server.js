@@ -37,6 +37,7 @@ app.get("/musikraum", showMusikraum);
 app.get("/partyraum", showPartyraum);
 app.get("/chat", showChat);
 
+
 app.listen(port, () => {
     console.log(`Server läuft auf http://localhost:${port}`);
 });

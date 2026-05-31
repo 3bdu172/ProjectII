@@ -1,15 +1,11 @@
-<main>
+<main class="dashboard">
 
-    {{#each sections}}
+    {{#each dashboardSections}}
 
-        <section class="dashboard-section">
+        <section class="dashboard-card">
             <h2>{{title}}</h2>
-
-            <p>
-                {{textBefore}}
-                <a href="{{url}}">{{linkText}}</a>
-                {{textAfter}}
-            </p>
+            <p>{{description}}</p>
+            <a class="button" href="{{url}}">{{buttonText}}</a>
         </section>
 
     {{/each}}
