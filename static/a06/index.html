@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aufgabe 6 - Formulare und Interaktionen</title>
+</head>
+
+<body>
+
+    <header>
+        <section>
+            <h1>Wohnheim Portal</h1>
+            <p>Dokumentation der Formulare und Interaktionen</p>
+        </section>
+
+        <nav>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/musikraum">Musikraum</a>
+            <a href="/partyraum">Partyraum</a>
+            <a href="/chat">Chat</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>1. Kurze Beschreibung der implementierten Formulare und Interaktionen</h2>
+
+            <p>
+                In Aufgabe 6 wurde das Wohnheim Portal um interaktive Formulare erweitert.
+                Benutzer können neue Reservierungen für den Musikraum und den Partyraum anfragen.
+            </p>
+
+            <ul>
+                <li><strong>Reservierungsformular:</strong> Benutzer können Datum, Startzeit und Endzeit eingeben.</li>
+                <li><strong>Bearbeitungsformular:</strong> Bestehende Reservierungen können geändert werden.</li>
+                <li><strong>Löschformular:</strong> Reservierungen können über ein POST-Formular gelöscht werden.</li>
+            </ul>
+
+            <p>
+                Neue Reservierungen erhalten zunächst den Status <strong>wartet</strong>, da sie noch
+                von einem Admin bestätigt werden müssen.
+            </p>
+        </section>
+
+
+        <section>
+            <h2>2. Verlinkung zu allen Routen mit Formularen</h2>
+
+            <ul>
+                <li><a href="/musikraum">Musikraum-Reservierung öffnen</a></li>
+                <li><a href="/partyraum">Partyraum-Reservierung öffnen</a></li>
+                <li><a href="/chat">Wohnheim-Chat öffnen</a></li>
+            </ul>
+
+            <p>
+                Zusätzlich gibt es Bearbeitungsrouten für einzelne Reservierungen,
+                die über die jeweiligen Bearbeiten-Buttons erreichbar sind.
+            </p>
+        </section>
+
+
+        <section>
+            <h2>3. Screenshot eines Hauptformulars</h2>
+
+            <p>
+                Der folgende Screenshot zeigt ein Hauptformular der Anwendung.
+            </p>
+
+            <img src="screenshot.png" alt="Screenshot eines Formulars im Wohnheim Portal" style="max-width: 100%;">
+        </section>
+
+
+        <section>
+            <h2>4. Erläuterungen zu den implementierten Funktionen</h2>
+
+            <h3>Reservierung erstellen</h3>
+            <p>
+                Für Musikraum und Partyraum wurde ein Formular mit <strong>method="post"</strong>
+                erstellt. Die Formulardaten werden im Controller aus <strong>req.body</strong>
+                gelesen und über das Model-Modul in der Datenbank gespeichert.
+            </p>
+
+            <pre><code>POST /reservierungen/:roomId/create</code></pre>
+
+            <h3>Reservierung bearbeiten</h3>
+            <p>
+                Für bestehende Reservierungen gibt es eine GET-Route zum Anzeigen des Formulars
+                und eine POST-Route zum Speichern der Änderungen. Nach dem Bearbeiten wird der
+                Status wieder auf <strong>wartet</strong> gesetzt.
+            </p>
+
+            <pre><code>GET  /reservierungen/:id/edit
+POST /reservierungen/:id/edit</code></pre>
+
+            <h3>Reservierung löschen</h3>
+            <p>
+                Das Löschen einer Reservierung erfolgt über ein kleines POST-Formular.
+                Dadurch werden Datenänderungen nicht über GET-Links ausgelöst.
+            </p>
+
+            <pre><code>POST /reservierungen/:id/delete</code></pre>
+        </section>
+
+
+        <section>
+            <h2>5. Beschreibung der verwendeten HTTP-Methoden</h2>
+
+            <p>
+                Für normale Seitenaufrufe und Navigation wird die Methode <strong>GET</strong> verwendet.
+                Beispiele dafür sind das Öffnen des Dashboards, der Raumseiten.
+            </p>
+
+            <p>
+                Für alle Aktionen, die Daten verändern, wird <strong>POST</strong> verwendet.
+                Dazu gehören das Erstellen, Bearbeiten und Löschen von Reservierungen.
+            </p>
+
+            <ul>
+                <li><strong>GET:</strong> Seiten anzeigen und Formulare laden.</li>
+                <li><strong>POST:</strong> Neue Daten speichern, bestehende Daten ändern oder Daten löschen.</li>
+            </ul>
+        </section>
+
+    </main>
+    <footer>
+        <p>
+            <a href="/index.html">Zurück zur Startseite</a>
+        </p>
+        <p>Erstellt von: Abdulrahman Al-Mashrea</p>
+    </footer>
+
+</body>
+</html>

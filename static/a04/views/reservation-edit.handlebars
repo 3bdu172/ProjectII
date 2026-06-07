@@ -1,0 +1,25 @@
+<main class="page">
+    <section class="card">
+        <h2>Reservierung bearbeiten</h2>
+
+        <form class="form" action="/reservierungen/{{reservation.reservation_id}}/edit" method="post">
+            <fieldset>
+                <label for="datum">Datum:</label>
+                <input type="date" id="datum" name="datum" value="{{reservation.datum}}" required>
+
+                <label for="startzeit">Startzeit:</label>
+                <input type="time" id="startzeit" name="startzeit" value="{{reservation.startzeit}}" required>
+
+                <label for="endzeit">Endzeit:</label>
+                <input type="time" id="endzeit" name="endzeit" value="{{reservation.endzeit}}" required>
+
+                <button class="button" type="submit">Speichern</button>
+            </fieldset>
+        </form>
+
+        <p>
+            Nach dem Bearbeiten wird der Status wieder auf <strong>wartet</strong> gesetzt,
+            damit die Reservierung erneut vom Admin bestätigt werden kann.
+        </p>
+    </section>
+</main>

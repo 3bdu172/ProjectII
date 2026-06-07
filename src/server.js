@@ -10,7 +10,11 @@ import {
     showWaschmaschinen,
     showMusikraum,
     showPartyraum,
-    showChat
+    showChat,
+    createRoomReservation,
+    deleteRoomReservation,
+    showEditReservation,
+    updateRoomReservation
 } from "./controllers/pages.js";
 
 const app = express();
@@ -26,7 +30,7 @@ app.set("view engine", "handlebars");
 app.set("views", "./static/a04/views");
 
 app.use(express.static("static"));
-
+app.use(express.urlencoded({ extended: false }));
 
 app.get("/startseite", showStart);
 app.get("/login", loginUser);
@@ -36,8 +40,13 @@ app.get("/waschmaschinen", showWaschmaschinen);
 app.get("/musikraum", showMusikraum);
 app.get("/partyraum", showPartyraum);
 app.get("/chat", showChat);
-
+app.get("/reservierungen/:id/edit", showEditReservation);
+app.post("/reservierungen/:id/edit", updateRoomReservation);
 
 app.listen(port, () => {
     console.log(`Server läuft auf http://localhost:${port}`);
 });
+
+
+app.post("/reservierungen/:roomId/create", createRoomReservation);
+app.post("/reservierungen/:id/delete", deleteRoomReservation);

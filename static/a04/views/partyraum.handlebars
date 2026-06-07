@@ -1,38 +1,52 @@
 <main class="page">
 
     <section class="card">
-        <h2>Partyraum reservieren</h2>
+        <h2>{{room.name}} reservieren</h2>
 
-        <p>
-            Hier können Bewohner den Partyraum für Feiern oder Treffen reservieren.
-        </p>
-
-        <form class="form" action="/dashboard" method="get">
-
-            <label for="party-datum">Datum:</label>
-            <input type="date" id="party-datum" name="datum">
-
-            <label for="party-start">Startzeit:</label>
-            <input type="time" id="party-start" name="startzeit">
-
-            <label for="party-ende">Endzeit:</label>
-            <input type="time" id="party-ende" name="endzeit">
-
-            <label for="party-name">Name:</label>
-            <input type="text" id="party-name" name="name" placeholder="Ihr Name">
-
-            <label for="zimmernummer">Zimmernummer:</label>
-            <input type="text" id="zimmernummer" name="zimmernummer" placeholder="Ihr Zimmernummer">
-
-            <button class ="button" type="submit">Reservieren</button>
-
+        <p>{{room.beschreibung}}</p>
+        
+        <form class="form" action="/reservierungen/{{room.room_id}}/create" method="post">
+            <fieldset>
+                <label for="datum">Datum:</label>
+                <input type="date" id="datum" name="datum" required>
+            
+                <label for="startzeit">Startzeit:</label>
+                <input type="time" id="startzeit" name="startzeit" required>
+            
+                <label for="endzeit">Endzeit:</label>
+                <input type="time" id="endzeit" name="endzeit" required>
+            
+                <button class="button" type="submit">Reservierung anfragen</button>
+            </fieldset>
         </form>
 
         <section class="info-box">
-            <h3>Aktuelle Reservierungen</h3>
+            <h3>Meine Reservierungen</h3>
 
-            <p><strong>Freitag:</strong> 19:00 - 23:00 Uhr, reserviert</p>
-            <p><strong>Samstag:</strong> 18:00 - 22:00 Uhr, reserviert</p>
+            {{#each reservations}}
+                <section class="reservation-item">
+                    <p>
+                        <strong>{{datum}}</strong><br>
+                        {{startzeit}} - {{endzeit}} Uhr
+                    </p>
+
+                    <p>
+                        Reserviert von {{user_name}}
+                    </p>
+
+                    <p>
+                        Status: {{status}}
+                    </p>
+
+                    <a class="button" href="/reservierungen/{{reservation_id}}/edit">
+                        Bearbeiten
+                    </a>
+
+                    <form action="/reservierungen/{{reservation_id}}/delete" method="post">
+                        <button class="button secondary" type="submit">Löschen</button>
+                    </form>
+                </section>
+            {{/each}}
         </section>
     </section>
 

@@ -2,6 +2,7 @@ import { getAllMachines } from "../models/machine.js";
 import { getRoomsByType } from "../models/room.js";
 import { getReservationsByRoom } from "../models/reservation.js";
 import { getAllMessages } from "../models/chat.js";
+import * as reservationModel from "../models/reservation.js";
 
 
 export const dashboardSections = [
@@ -59,6 +60,7 @@ export async function showMusikraum(req, res) {
     res.render("musikraum", {
         title: "Musikraum",
         showNav: true,
+        pageNav: true,
         room: musikraum,
         reservations
     });
@@ -73,6 +75,7 @@ export async function showPartyraum(req, res) {
     res.render("partyraum", {
         title: "Partyraum",
         showNav: true,
+        pageNav: true,
         room: partyraum,
         reservations
     });
@@ -86,4 +89,67 @@ export async function showChat(req, res) {
         showNav: true,
         messages
     });
+}
+
+export async function createRoomReservation(req, res) {
+    const userId = 1; // fixed test user because login is not implemented yet
+    const roomId = Number(req.params.roomId);
+
+    const { datum, startzeit, endzeit } = req.body;
+
+    await reservationModel.createReservation(
+        userId,
+        roomId,
+        datum,
+        startzeit,
+        endzeit
+    );
+
+    res.redirect(req.get("Referer") || "/dashboard");
+}
+
+export async function deleteRoomReservation(req, res) {
+    const reservationId = Number(req.params.id);
+
+    await reservationModel.deleteReservation(reservationId);
+
+    res.redirect(req.get("Referer") || "/dashboard");
+}
+
+export async function showEditReservation(req, res) {
+    const userId = 1;
+    const reservationId = Number(req.params.id);
+
+    const reservation = await reservationModel.getReservationForUser(
+        reservationId,
+        userId
+    );
+
+    if (!reservation) {
+        return res.redirect("/dashboard");
+    }
+
+    res.render("reservation-edit", {
+        title: "Reservierung bearbeiten",
+        showNav: true,
+        pageNav: true,
+        reservation
+    });
+}
+
+export async function updateRoomReservation(req, res) {
+    const userId = 1;
+    const reservationId = Number(req.params.id);
+
+    const { datum, startzeit, endzeit } = req.body;
+
+    await reservationModel.updateReservation(
+        reservationId,
+        userId,
+        datum,
+        startzeit,
+        endzeit
+    );
+
+    res.redirect(req.get("Referer") || "/dashboard");
 }

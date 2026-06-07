@@ -329,3 +329,39 @@ header nav a:hover {
     font-size: 24px;
     margin-bottom: 15px;
 }
+
+.form fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form button {
+    margin-top: 15px;
+    width: 220px;
+}
+.form input {
+    width: 300px;
+    padding: 12px;
+    font-size: 18px;
+}
+
+.reservation-item {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.reservation-item form {
+    margin-top: 10px;
+}
+
+.reservation-item .button {
+    margin-right: 10px;
+    margin-top: 10px;
+}
