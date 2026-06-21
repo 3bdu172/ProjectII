@@ -16,11 +16,11 @@
         </section>
 
         <nav>
-            <a href="/dashboard">Dashboard</a>
-            <a href="/waschmaschinen">Waschmaschinen</a>
-            <a href="/musikraum">Musikraum</a>
-            <a href="/partyraum">Partyraum</a>
-            <a href="/chat">Chat</a>
+            <a href="{{@root.base}}dashboard">Dashboard</a>
+            <a href="{{@root.base}}waschmaschinen">Waschmaschinen</a>
+            <a href="{{@root.base}}musikraum">Musikraum</a>
+            <a href="{{@root.base}}partyraum">Partyraum</a>
+            <a href="{{@root.base}}chat">Chat</a>
         </nav>
     </header>
 
@@ -64,11 +64,11 @@
             <h2>3. Verlinkung zu den implementierten Routen mit Datenbankanbindung</h2>
 
             <ul>
-                <li><a href="/dashboard">Dashboard öffnen</a></li>
-                <li><a href="/waschmaschinen">Waschmaschinen öffnen</a></li>
-                <li><a href="/musikraum">Musikraum öffnen</a></li>
-                <li><a href="/partyraum">Partyraum öffnen</a></li>
-                <li><a href="/chat">Wohnheim-Chat öffnen</a></li>
+                <li><a href="{{@root.base}}dashboard">Dashboard öffnen</a></li>
+                <li><a href="{{@root.base}}waschmaschinen">Waschmaschinen öffnen</a></li>
+                <li><a href="{{@root.base}}musikraum">Musikraum öffnen</a></li>
+                <li><a href="{{@root.base}}partyraum">Partyraum öffnen</a></li>
+                <li><a href="{{@root.base}}chat">Wohnheim-Chat öffnen</a></li>
             </ul>
 
             <p>
@@ -161,7 +161,7 @@ ORDER BY chat.created_at ASC;</code></pre>
     </main>
     <footer>
         <p>
-            <a href="/index.html">Zurück zur Startseite</a>
+            <a href="{{@root.base}}index.html">Zurück zur Startseite</a>
         </p>
         <p>Erstellt von: Abdulrahman Al-Mashrea</p>
     </footer>

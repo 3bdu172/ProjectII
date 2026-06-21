@@ -5,7 +5,7 @@
 
         <p>{{room.beschreibung}}</p>
         
-        <form class="form" action="/reservierungen/{{room.room_id}}/create" method="post">
+        <form class="form" action="{{@root.base}}reservierungen/{{room.room_id}}/create" method="post">
             <fieldset>
                 <label for="datum">Datum:</label>
                 <input type="date" id="datum" name="datum" required>
@@ -38,11 +38,11 @@
                         Status: {{status}}
                     </p>
 
-                    <a class="button" href="/reservierungen/{{reservation_id}}/edit">
+                    <a class="button" href="{{@root.base}}reservierungen/{{reservation_id}}/edit">
                         Bearbeiten
                     </a>
 
-                    <form action="/reservierungen/{{reservation_id}}/delete" method="post">
+                    <form action="{{@root.base}}reservierungen/{{reservation_id}}/delete" method="post">
                         <button class="button secondary" type="submit">Löschen</button>
                     </form>
                 </section>

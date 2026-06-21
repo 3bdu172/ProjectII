@@ -4,13 +4,20 @@ DROP TABLE IF EXISTS waschmaschine;
 DROP TABLE IF EXISTS raum;
 DROP TABLE IF EXISTS benutzer;
 
+DROP TABLE IF EXISTS chat_nachricht;
+DROP TABLE IF EXISTS reservierung;
+DROP TABLE IF EXISTS waschmaschine;
+DROP TABLE IF EXISTS raum;
+DROP TABLE IF EXISTS benutzer;
 
 CREATE TABLE IF NOT EXISTS benutzer (
     user_id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    passwort TEXT NOT NULL,
-    zimmernummer TEXT NOT NULL
+    login TEXT UNIQUE NOT NULL,
+    firstname TEXT NOT NULL,
+    lastname TEXT NOT NULL,
+    password_hash TEXT NOT NULL,
+    zimmernummer TEXT,
+    created_at DATETIME NOT NULL
 );
 
 
@@ -37,12 +44,11 @@ CREATE TABLE IF NOT EXISTS reservierung (
 );
 
 
-CREATE TABLE IF NOT EXISTS chat (
+CREATE TABLE IF NOT EXISTS chat_nachricht (
     message_id INTEGER PRIMARY KEY,
     user_id INTEGER NOT NULL,
     text TEXT NOT NULL,
     created_at DATETIME NOT NULL,
-
     FOREIGN KEY (user_id) REFERENCES benutzer(user_id)
 );
 

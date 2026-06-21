@@ -2,33 +2,35 @@
     <section class="card">
         <h2>Registrieren</h2>
 
-        <p>Erstellen Sie ein neues Konto für Wohnheim Portal.</p>
+        {{#if flash}}
+            <section class="flash-message">
+                <p>{{flash}}</p>
+            </section>
+        {{/if}}
 
-        <br>
-        <form class="form" action="/dashboard" method="get">
+        <form class="form" action="/register" method="post">
+            <fieldset>
+                <label for="login">Login-Name:</label>
+                <input type="text" id="login" name="login" required>
         
-            <label for="name">Name:</label>
-            <input type="text" id="name" placeholder="Ihr Name">
-            
-            <label for="email">E-Mail-Adresse:</label>
-            <input type="email" id="email" placeholder="name@example.com">
-            
-            <label for="zimmer">Zimmernummer:</label>
-            <input type="text" id="zimmer" placeholder="z.B. 204">
-            
-            <label for="password">Passwort:</label>
-            <input type="password" id="password" placeholder="Passwort eingeben">
-            
-            <label for="confirm-password">Passwort bestätigen:</label>
-            <input type="password" id="confirm-password" placeholder="Passwort wiederholen">
-            
-            <button class ="button" type="submit">Konto erstellen</button>
+                <label for="firstname">Vorname:</label>
+                <input type="text" id="firstname" name="firstname" required>
+        
+                <label for="lastname">Nachname:</label>
+                <input type="text" id="lastname" name="lastname" required>
+        
+                <label for="password">Passwort:</label>
+                <input type="password" id="password" name="password" required>
+        
+                <label for="password2">Passwort wiederholen:</label>
+                <input type="password" id="password2" name="password2" required>
+        
+                <button class="button" type="submit">Registrieren</button>
+            </fieldset>
         </form>
-
-
         <p>
             Haben Sie schon ein Konto?<br><br>
-            <a class="button secondary" href="/login">Zurück zum Login</a>
+            <a class="button secondary" href="{{@root.base}}login">Zum Login</a>
         </p>
     </section>
 </main>

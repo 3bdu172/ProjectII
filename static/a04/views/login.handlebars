@@ -4,19 +4,27 @@
 
         <p>Bitte melden Sie sich mit Ihrem Konto an.</p>
 
-        <form class="form" action="/dashboard" method="get">
-            <label for="email">E-Mail-Adresse:</label>
-            <input type="email" id="email" placeholder="name@example.com">
+        {{#if flash}}
+            <section class="flash-message">
+                <p>{{flash}}</p>
+            </section>
+        {{/if}}
 
-            <label for="password">Passwort:</label>
-            <input type="password" id="password" placeholder="Passwort eingeben">
-            
-            <button class ="button" type="submit">Login</button>
+        <form class="form" action="/login" method="post">
+            <fieldset>
+                <label for="login">Login-Name:</label>
+                <input type="text" id="login" name="login" placeholder="Login-Name" required>
+
+                <label for="password">Passwort:</label>
+                <input type="password" id="password" name="password" placeholder="Passwort eingeben" required>
+
+                <button class="button" type="submit">Login</button>
+            </fieldset>
         </form>
 
         <p>
             Haben Sie noch kein Konto?<br><br>
-            <a class="button secondary" href="/registrieren">registrieren</a>
+            <a class="button secondary" href="/register">Registrieren</a>
         </p>
     </section>
 </main>

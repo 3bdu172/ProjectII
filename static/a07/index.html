@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Aufgabe 7 - Benutzerverwaltung</title>    
+</head>
+<body>
+    <header>
+        <section>
+            <h1>Aufgabe 7: Benutzerverwaltung</h1>
+            <p>Dokumentation der Registrierung, Anmeldung und Abmeldung im Wohnheim Portal</p>
+        </section>
+    </header>
+
+    <main>
+        <section>
+            <h2>Kurze Beschreibung</h2>
+
+            <p>
+                In Aufgabe 7 wurde eine Benutzerverwaltung für das Wohnheim Portal implementiert.
+                Neue Benutzer können sich über ein Registrierungsformular anmelden. Dabei werden die
+                eingegebenen Daten validiert, der Login-Name auf Eindeutigkeit geprüft und das Passwort
+                mit <strong>Bun.password.hashSync()</strong> gehasht gespeichert.
+            </p>
+
+            <p>
+                Beim Login werden Login-Name und Passwort überprüft. Bei erfolgreicher Anmeldung wird
+                ein <strong>user_id</strong>-Cookie gesetzt. Geschützte Seiten wie Dashboard, Musikraum,
+                Partyraum und Chat können nur nach erfolgreichem Login geöffnet werden. Beim Logout wird
+                das Cookie wieder gelöscht.
+            </p>
+
+            <p>
+                Fehlermeldungen und Erfolgsmeldungen werden mit Flash-Messages angezeigt und verschwinden
+                nach dem nächsten Seitenaufruf automatisch.
+            </p>
+        </section>
+
+        <section>
+            <h2>Links</h2>
+
+            <p>
+                <a href="../register">Zum Registrierungsformular (/register)</a>
+            </p>
+
+            <p>
+                <a secondary" href="../login">Zum Login-Formular (/login)</a>
+            </p>
+        </section>
+
+        <section>
+            <h2>Screenshot: Registrierungsformular</h2>
+            <p>Die folgende Abbildung zeigt das Registrierungsformular.</p>
+            <img src="register.png" alt="Screenshot des Registrierungsformulars" width="300">
+        </section>
+
+        <section class="card">
+            <h2>Screenshot: Login-Formular</h2>
+            <p>Die folgende Abbildung zeigt das Login-Formular.</p>
+            <img src="login.png" alt="Screenshot des Login-Formulars" width="300">
+        </section>
+    </main>
+    <footer>
+        <p>Erstellt von: Abdulrahman Al-Mashrea</p>
+    </footer>
+</body>
+</html>

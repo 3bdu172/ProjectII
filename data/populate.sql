@@ -1,9 +1,8 @@
-INSERT INTO benutzer (user_id, name, email, passwort, zimmernummer) VALUES
-    (1, 'Anne Müller', 'anne@example.com', 'passwort123', '204'),
-    (2, 'Max Schneider', 'max@example.com', 'passwort123', '112'),
-    (3, 'Sara Weber', 'sara@example.com', 'passwort123', '305'),
-    (4, 'Jakub Novak', 'jakub@example.com', 'passwort123', '410');
-
+INSERT INTO benutzer (user_id, login, firstname, lastname, password_hash, zimmernummer, created_at) VALUES
+    (1, 'anne', 'Anne', 'Müller', 'test-hash', '204', datetime('now')),
+    (2, 'max', 'Max', 'Schneider', 'test-hash', '112', datetime('now')),
+    (3, 'sara', 'Sara', 'Weber', 'test-hash', '305', datetime('now')),
+    (4, 'jakub', 'Jakub', 'Novak', 'test-hash', '410', datetime('now'));
 
 INSERT INTO raum (room_id, name, typ, beschreibung, status) VALUES
     (1, 'Musikraum', 'music', 'Raum zum Musizieren und Üben', 'verfügbar'),
@@ -26,7 +25,7 @@ INSERT INTO reservierung (reservation_id, user_id, room_id, datum, startzeit, en
     (4, 4, 2, '2026-06-06', '18:00', '22:00', 'bestätigt');
 
 
-INSERT INTO chat (message_id, user_id, text, created_at) VALUES
+INSERT INTO chat_nachricht (message_id, user_id, text, created_at) VALUES
     (1, 1, 'Ist der Musikraum heute frei?', datetime('now', '-3 hours')),
     (2, 2, 'Waschmaschine 2 ist gleich fertig.', datetime('now', '-2 hours')),
     (3, 3, 'Hat jemand meinen Schlüssel gefunden?', datetime('now', '-1 hours')),

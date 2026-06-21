@@ -1,4 +1,12 @@
 <header>
+
+    {{#if user}}
+        <section class="user-box-top-left">
+            <span class="user-avatar">👤</span>
+            <span class="user-name">{{user.login}}</span>
+        </section>
+    {{/if}}
+    
     <section>
         <h1>Wohnheim Portal</h1>
         
@@ -7,12 +15,14 @@
     {{#if showNav}}
     <nav>
         {{#if pageNav}}
-           <a href="/dashboard">Dashboard</a> 
+           <a href="{{@root.base}}dashboard">Dashboard</a> 
         {{/if}}
 
-        <a href="/chat">Chat</a>
-        <a href="/login">Abmelden</a>
-        
+        <a href="{{@root.base}}chat">Chat</a>
+        <form action="/logout" method="post">
+            <button type="submit" class="nav-logout">Abmelden</button>
+        </form>
+
     </nav>
     {{/if}}
 </header>

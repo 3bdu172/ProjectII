@@ -6,7 +6,7 @@ export async function getAllMessages() {
             chat_nachricht.message_id,
             chat_nachricht.text,
             chat_nachricht.created_at,
-            benutzer.name AS author
+            benutzer.firstname || ' ' || benutzer.lastname AS author
         FROM chat_nachricht
         JOIN benutzer ON chat_nachricht.user_id = benutzer.user_id
         ORDER BY chat_nachricht.created_at ASC

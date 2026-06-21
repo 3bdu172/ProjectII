@@ -2,7 +2,7 @@
     <section class="card">
         <h2>Reservierung bearbeiten</h2>
 
-        <form class="form" action="/reservierungen/{{reservation.reservation_id}}/edit" method="post">
+        <form class="form" action="{{@root.base}}reservierungen/{{reservation.reservation_id}}/edit" method="post">
             <fieldset>
                 <label for="datum">Datum:</label>
                 <input type="date" id="datum" name="datum" value="{{reservation.datum}}" required>

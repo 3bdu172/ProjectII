@@ -17,7 +17,7 @@ export async function getReservationsByRoom(roomId) {
             reservierung.startzeit,
             reservierung.endzeit,
             reservierung.status,
-            benutzer.name AS user_name
+            benutzer.firstname || ' ' || benutzer.lastname AS user_name
         FROM reservierung
         JOIN benutzer ON reservierung.user_id = benutzer.user_id
         WHERE reservierung.room_id = ${roomId}
@@ -34,7 +34,7 @@ export async function getReservationsByRoomForUser(roomId, userId) {
             reservierung.startzeit,
             reservierung.endzeit,
             reservierung.status,
-            benutzer.name AS user_name
+            benutzer.firstname || ' ' || benutzer.lastname AS user_name
         FROM reservierung
         JOIN benutzer ON reservierung.user_id = benutzer.user_id
         WHERE reservierung.room_id = ${roomId}
