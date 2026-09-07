@@ -2,7 +2,14 @@
 
     <section class="card">
         <h2>{{room.name}} reservieren</h2>
-
+        
+        {{#if flash}}
+        <section class="flash-message">
+            <p>{{flash}}</p>
+        </section>
+        {{/if}}
+        
+        
         <p>{{room.beschreibung}}</p>
         
         <form class="form" action="{{@root.base}}reservierungen/{{room.room_id}}/create" method="post">

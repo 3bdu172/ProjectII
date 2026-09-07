@@ -106,8 +106,10 @@ export async function showChat(req, res) {
     const messages = await getAllMessages();
 
     res.render("chat", {
+
         title: "Wohnheim Chat",
         showNav: true,
+        pageNav: true,
         messages
     });
 }
