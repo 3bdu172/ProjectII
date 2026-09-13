@@ -29,15 +29,15 @@ app.use((req, res, next) => {
 });
 
 app.engine("handlebars", engine({
-    layoutsDir: "./static/a04/views/layouts",
-    partialsDir: "./static/a04/views/partials",
+    layoutsDir: "./static/views/layouts",
+    partialsDir: "./static/views/partials",
     defaultLayout: "main"
 }));
 
 app.set("view engine", "handlebars");
-app.set("views", "./static/a04/views");
+app.set("views", "./static/views");
 
-app.use(express.static("static"));
+app.use(express.static("static", { index: false }));
 app.use(express.urlencoded({ extended: false }));
 
 async function requireLogin(req, res, next) {
